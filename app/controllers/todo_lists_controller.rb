@@ -1,25 +1,20 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_list, only: %i[ show edit update destroy ]
+  before_action :set_todo_list, only: %i[show edit update destroy]
 
-  # GET /todo_lists or /todo_lists.json
   def index
     @todo_lists = TodoList.all
   end
 
-  # GET /todo_lists/1 or /todo_lists/1.json
   def show
+    @todo_items = @todo_list.todo_items
   end
 
-  # GET /todo_lists/new
   def new
     @todo_list = TodoList.new
   end
 
-  # GET /todo_lists/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /todo_lists or /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
 
@@ -34,7 +29,6 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /todo_lists/1 or /todo_lists/1.json
   def update
     respond_to do |format|
       if @todo_list.update(todo_list_params)
@@ -56,12 +50,11 @@ class TodoListsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_todo_list
     @todo_list = TodoList.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def todo_list_params
     params.require(:todo_list).permit(:title, :description)
   end
