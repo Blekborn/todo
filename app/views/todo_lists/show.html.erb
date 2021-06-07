@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @todo_list.title %>
-</p>
-<ul>
+<div class="cart-header d-flex justify-content-between">
+  <span>
+       <%= @todo_list.title %>
+  </span>
+  <%= link_to 'Edit', edit_todo_list_path(@todo_list), class: 'btn-secondary btn-sm' %>
+</div>
+<ul class="list-group">
   <% @todo_list.todo_items.each do |todo_item| %>
-    <li><%= todo_item.description %></li>
+    <li class="list-group-item"><%= todo_item.description %></li>
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
-<%= link_to 'Back', todo_lists_path %>
